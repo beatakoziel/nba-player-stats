@@ -8,6 +8,8 @@ springfox:
 #FILE SERVICE CONFIG
 files:
   upload-path: /home/beata/Downloads
+  paths:
+    nba-player-stats: /stats/nba2021_advanced.csv
 
 #DATABASE CONFIG
 spring:
