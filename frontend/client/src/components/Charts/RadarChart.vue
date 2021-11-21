@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="loader-wrapper">
-      <dot-loader class="loader" style- v-if="isLoading" />
+      <dot-loader class="loader" v-if="isLoading" />
     </div>
-    <div class="chart-wrapper">
+    <div>
       <apexchart
         type="radar"
         height="550"
@@ -16,7 +16,7 @@
 </template>
 <script>
 // service
-import getPtsByPos from "@/services/dataService";
+import { getPtsByPos } from "@/services/dataService";
 // components
 import DotLoader from "@/components/App/DotLoader";
 
@@ -70,13 +70,6 @@ export default {
         fill: {
           colors: ["#ffcd6f"],
         },
-        // dataLabels: {
-        //   enabled: true,
-        //   background: {
-        //     foreColor: "#ffcd6f",
-        //     borderColor: "#ffcd6f",
-        //   },
-        // },
       },
     };
   },
@@ -103,13 +96,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 100%;
-}
-.chart-wrapper {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; 
-   width: 100%;
-  height: 100%;  */
 }
 .loader {
   margin-top: 64px;

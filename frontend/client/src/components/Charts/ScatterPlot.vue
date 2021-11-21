@@ -1,56 +1,34 @@
 <template>
   <div>
-    <apexchart
-      type="scatter"
-      height="350"
-      :options="chartOptions"
-      :series="series"
-    />
+    <div class="loader-wrapper">
+      <dot-loader class="loader" v-if="isLoading" />
+    </div>
+    <div>
+      <apexchart
+        type="scatter"
+        height="550"
+        :options="chartOptions"
+        :series="series"
+        v-if="!isLoading && series.length === 4"
+      />
+    </div>
   </div>
 </template>
 <script>
+// service
+import { getMinsByAgeRange } from "@/services/dataService";
+// components
+import DotLoader from "@/components/App/DotLoader";
+
 export default {
   name: "ScatterPlot",
+  components: {
+    DotLoader,
+  },
   data() {
     return {
-      series: [
-        {
-          name: "19-23",
-          data: [
-            [34.1, 19],
-            [21.2, 20],
-            [16.4, 21],
-            [29.7, 22],
-            [38.6, 23],
-          ],
-        },
-        {
-          name: "24-27",
-          data: [
-            [41.1, 24],
-            [38.8, 25],
-            [31.4, 26],
-            [22.3, 27],
-          ],
-        },
-        {
-          name: "28-31",
-          data: [
-            [42.5, 28],
-            [43.0, 29],
-            [39.2, 30],
-            [37.5, 31],
-          ],
-        },
-        {
-          name: "32-",
-          data: [
-            [16.3, 32],
-            [20.5, 33],
-            [12.2, 34],
-          ],
-        },
-      ],
+      isLoading: false,
+      series: [],
       chartOptions: {
         chart: {
           height: 350,
@@ -59,21 +37,72 @@ export default {
             enabled: true,
             type: "xy",
           },
-          title: "Minutes per game by age range of player",
+          toolbar: {
+            show: false,
+          },
         },
         xaxis: {
           tickAmount: 10,
-          lables: {
+          labels: {
             formatter: function (val) {
-              return parseFloat(val).toFixed(1);
+              return `${parseFloat(val).toFixed(2)} MPG`;
+            },
+          },
+          title: {
+            text: "Minutes per game",
+            style: {
+              fontSize: "20px",
+              fontFamily: "Roboto, sans-serif",
+              color: "#808080",
+              fontWeight: 300,
             },
           },
         },
         yaxis: {
           tickAmount: 7,
+          labels: {
+            show: true,
+            formatter: function (val) {
+              return `${val} years old`;
+            },
+          },
+          title: {
+            text: "Players age",
+            style: {
+              fontSize: "20px",
+              fontFamily: "Roboto, sans-serif",
+              color: "#808080",
+              fontWeight: 300,
+            },
+          },
         },
       },
     };
   },
+  mounted() {
+    this.isLoading = true;
+    const ranges = getMinsByAgeRange();
+
+    this.series.push(ranges.range1);
+    this.series.push(ranges.range2);
+    this.series.push(ranges.range3);
+    this.series.push(ranges.range4);
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+  },
 };
 </script>
+<style scoped>
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.loader {
+  margin-top: 64px;
+}
+</style>

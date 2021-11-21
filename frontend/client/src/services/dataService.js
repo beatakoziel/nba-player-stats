@@ -1,6 +1,6 @@
 import data from "@/assets/data/data.json";
 
-export default function getPtsByPos() {
+export function getPtsByPos() {
   const pg = [];
   const sg = [];
   const sf = [];
@@ -37,4 +37,43 @@ export default function getPtsByPos() {
   const cAvg = cSum / c.length || 0;
 
   return { pg: pgAvg, sg: sgAvg, sf: sfAvg, pf: pfAvg, c: cAvg };
+}
+
+export function getMinsByAgeRange() {
+  const range1 = {
+    name: "Ages -23",
+  };
+  const range2 = {
+    name: "Ages 24-27",
+  };
+  const range3 = {
+    name: "Ages 28-31",
+  };
+  const range4 = {
+    name: "Ages 32-",
+  };
+
+  let range1Arr = [];
+  let range2Arr = [];
+  let range3Arr = [];
+  let range4Arr = [];
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].Age <= 23) {
+      range1Arr.push([data[i].MP, data[i].Age]);
+    } else if (data[i].Age >= 24 && data[i].Age <= 27) {
+      range2Arr.push([data[i].MP, data[i].Age]);
+    } else if (data[i].Age >= 28 && data[i].Age <= 31) {
+      range3Arr.push([data[i].MP, data[i].Age]);
+    } else if (data[i].Age >= 32) {
+      range4Arr.push([data[i].MP, data[i].Age]);
+    }
+  }
+
+  range1["data"] = range1Arr;
+  range2["data"] = range2Arr;
+  range3["data"] = range3Arr;
+  range4["data"] = range4Arr;
+
+  return { range1: range1, range2: range2, range3: range3, range4: range4 };
 }
