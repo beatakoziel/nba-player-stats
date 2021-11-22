@@ -17,18 +17,24 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-content {
-  margin: 64px;
-  width: 60%;
+  margin: 32px;
+  width: 75%;
   margin-left: auto;
   margin-right: auto;
+  // display: flex;
+  // justify-content: center;
+  min-width: 1200px;
+  margin-top: 80px;
 }
 .nav {
   width: 100%;
-  height: 100px;
-  margin-top: 32px;
+  height: 60px;
   margin-bottom: 32px;
   border-bottom: 2px solid orange;
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
 }
 </style>

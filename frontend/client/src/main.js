@@ -6,7 +6,6 @@ import store from "./store";
 // import ApexCharts library
 import VueApexCharts from "vue-apexcharts";
 Vue.use(VueApexCharts);
-
 // import ApexChart component globally
 Vue.component("apexchart", VueApexCharts);
 

@@ -10,7 +10,7 @@
 a {
   text-decoration: none;
   color: #808080;
-  font-size: 24px;
+  font-size: 20px;
   &:hover {
     color: orange;
   }
@@ -24,6 +24,6 @@ a {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  line-height: 100px;
+  align-items: center;
 }
 </style>

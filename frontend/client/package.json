@@ -10,6 +10,8 @@
   "dependencies": {
     "apexcharts": "^3.30.0",
     "core-js": "^3.6.5",
+    "devextreme": "^21.2.3",
+    "devextreme-vue": "^21.2.3",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.2",
     "vue-router": "^3.2.0",

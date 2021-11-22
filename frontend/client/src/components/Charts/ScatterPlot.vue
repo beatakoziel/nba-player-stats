@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div class="loader-wrapper">
-      <dot-loader class="loader" v-if="isLoading" />
-    </div>
+    <dot-loader class="loader" v-if="isLoading" />
     <div>
       <apexchart
         type="scatter"
-        height="550"
+        :height="550"
+        :width="800"
         :options="chartOptions"
         :series="series"
         v-if="!isLoading && series.length === 4"
@@ -95,13 +94,6 @@ export default {
 };
 </script>
 <style scoped>
-.loader-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
 .loader {
   margin-top: 64px;
 }

@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div class="loader-wrapper">
-      <dot-loader class="loader" v-if="isLoading" />
-    </div>
+    <dot-loader class="loader" v-if="isLoading" />
     <div>
       <apexchart
         type="radar"
-        height="550"
+        :height="550"
+        :width="650"
         :options="chartOptions"
         :series="series"
         v-if="!isLoading && series[0].data.length === 5"
@@ -17,6 +16,7 @@
 <script>
 // service
 import { getPtsByPos } from "@/services/dataService";
+
 // components
 import DotLoader from "@/components/App/DotLoader";
 
@@ -90,13 +90,6 @@ export default {
 };
 </script>
 <style scoped>
-.loader-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
 .loader {
   margin-top: 64px;
 }
